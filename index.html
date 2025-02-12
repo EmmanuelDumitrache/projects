@@ -39,8 +39,9 @@
                     <th>Sold</th>
                     <th>Remaining</th>
                     <th>Crypto</th>
-                    <th>$ at time</th>
-                    <th>ROI%</th>
+                    <th>Buy Price ($)</th>
+                    <th>Sell Price ($)</th>
+                    <th>ROI%</th> <!-- Now dynamically calculated -->
                 </tr>
             </thead>
             <tbody id="table_body">
@@ -52,7 +53,8 @@
                     <td>0.05 BTC</td>
                     <td>Bitcoin</td>
                     <td>$95,000</td>
-                    <td>+5%</td>
+                    <td>$100,000</td>
+                    <td><!-- ROI will be calculated automatically --></td>
                 </tr>
                 <tr>
                     <td>02/01/2025</td>
@@ -61,40 +63,46 @@
                     <td>0.5 ETH</td>
                     <td>Ethereum</td>
                     <td>$2,350</td>
-                    <td>-2%</td>
+                    <td>$2,400</td>
+                    <td><!-- ROI will be calculated automatically --></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <!--Transaction recorder-->
+    <!-- Transaction recorder -->
     <div>
         <h3>Record your trade</h3>
         <form id="transactionForm">
             <input type="date" id="inputDate" required>
-            <input type="text" id="inputBought" placeholder="Bought Amount" required>
-            <input type="text" id="inputSold" placeholder="Sold Amount" required>
-            <input type="text" id="inputRemaining" placeholder="Remaining" required>
-            <input type="text" id="inputCrypto" placeholder="Crypto Name" required>
-            <input type="text" id="inputPriceAtTime" placeholder="$ at time" required>
-            <input type="text" id="inputROI" placeholder="ROI %" required>
+            <input type="text" id="inputBought" placeholder="BUY" required>
+            <input type="text" id="inputSold" placeholder="SELL" required>
+            <input type="text" id="inputRemaining" placeholder="REMAINING" required>
+            <select id="inputCrypto" required>
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+            </select>
+            <input type="text" id="inputPriceAtTime" placeholder="Buy Price USD" required>
+            <input type="text" id="inputSoldPrice" placeholder="Sell Price USD" required>            
             <button type="submit">Add Transaction</button>
         </form>
-        
     </div>
 
     <!-- Projected ROI section -->
     <div>
         <h2>Your Projected ROI%</h2>
-        <!-- You can add the dynamic ROI value here -->
+        <canvas id="roiChart"></canvas>
     </div>
 
-</main>
+</main> <!-- Corrected closing tag -->
 
 <footer>
     <!-- Optional Footer Content (e.g., copyright, contact info) -->
 </footer>
 
+<!-- ✅ Ensure Chart.js Loads BEFORE `index.js` ✅ -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="module" src="index.js"></script>
+
 </body>
 </html>
